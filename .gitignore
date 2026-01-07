@@ -16,3 +16,18 @@ build/
 *.egg-info/
 
 plan.csv
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+plan.csv
+
+.venv/
+
+__pycache__/
+
+*.pyc
+
+.DS_Store
+
+plan.csv
