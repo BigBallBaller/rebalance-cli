@@ -9,11 +9,12 @@ from rebalance.report import print_report
 app = typer.Typer(help="Portfolio rebalancing CLI", no_args_is_help=True)
 
 
-@app.callback()
-def main() -> None:
+@app.callback(invoke_without_command=True)
+def main(ctx: typer.Context) -> None:
     """Portfolio rebalancing CLI."""
-    # Keeping this callback forces Typer to behave like a command group.
-    return
+    if ctx.invoked_subcommand is None:
+        typer.echo(ctx.get_help())
+        raise typer.Exit()
 
 
 @app.command()
