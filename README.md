@@ -1,3 +1,5 @@
+![tests](https://github.com/BigBallBaller/rebalance-cli/actions/workflows/tests.yml/badge.svg)
+
 # rebalance-cli
 
 A Python command-line tool that generates a **buy/sell portfolio rebalancing plan**
