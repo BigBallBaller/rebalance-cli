@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import typer
 
+from rebalance import __version__
 from rebalance.core import compute_rebalance
 from rebalance.io import parse_target_string, read_holdings_csv, read_target_json
 from rebalance.report import print_report
@@ -9,8 +10,23 @@ from rebalance.report import print_report
 app = typer.Typer(help="Portfolio rebalancing CLI", no_args_is_help=True)
 
 
+def _version_callback(value: bool) -> None:
+    if value:
+        typer.echo(__version__)
+        raise typer.Exit()
+
+
 @app.callback(invoke_without_command=True)
-def main(ctx: typer.Context) -> None:
+def main(
+    ctx: typer.Context,
+    version: bool = typer.Option(
+        False,
+        "--version",
+        help="Show version and exit",
+        callback=_version_callback,
+        is_eager=True,
+    ),
+) -> None:
     """Portfolio rebalancing CLI."""
     if ctx.invoked_subcommand is None:
         typer.echo(ctx.get_help())
